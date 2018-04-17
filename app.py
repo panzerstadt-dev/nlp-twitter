@@ -1,18 +1,11 @@
-import xlrd
-import csv
-import os.path as path
+from tabulate import tabulate
+import pandas
+import numpy as np
+import keras
 
-xls_filepath = './data/temp.xls'
+filepath = './processed/temp.tsv'
 
-def csv_from_excel():
-    workbook = xlrd.open_workbook(xls_filepath)
-    worksheet = workbook.sheet_by_name('Sheet1')
-    print(worksheet.)
-    csv_output = open(''.join([path.basename(xls_filepath), '.csv']), 'wb')
-    write = csv.writer(csv_output, delimiter='|')
+table = pandas.read_csv(filepath, sep="\t")
 
-    for rownum in range(worksheet.nrows):
-        write.writerow(worksheet.row_values(rownum))
-    csv_output.close()
+print(table.describe())
 
-csv_from_excel()
